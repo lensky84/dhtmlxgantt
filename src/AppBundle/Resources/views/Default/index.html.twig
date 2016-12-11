@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div id="wrapper">
+        <div id="container">
+        <h1>OK</h1>
+
+
+            <div id="gantt_here" style='width:100%; height:250px;'></div>
+            <script type="text/javascript">
+                /* chart configuration and initialization */
+                gantt.config.xml_date = "%Y-%m-%d %H:%i:%s";
+                gantt.config.date_grid = "%d.%m.%Y";
+                gantt.config.step = 1;
+                gantt.config.scale_unit= "day";
+                gantt.init("gantt_here", new Date(2010,7,1), new Date(2010,8,1));
+                /* refers to the 'data' action that we will create in the next substep */
+                gantt.load("{{ path('app.get_data') }}", "xml");
+                /* refers to the 'data' action as well */
+                var dp = new gantt.dataProcessor("{{ path('app.get_data') }}");
+                dp.init(gantt);
+            </script>
+        </div>
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    <link href="{{ asset('bundles/projackeddhtmlxgantt/css/dhtmlxgantt.css') }}" type="text/css" rel="stylesheet" />
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('bundles/projackeddhtmlxgantt/js/dhtmlxgantt.js') }}"></script>
+    <script src="{{ asset('bundles/projackeddhtmlxgantt/js/locale/locale_ru.js') }}"></script>
+{% endblock %}

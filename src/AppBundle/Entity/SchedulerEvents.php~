@@ -1,0 +1,53 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * SchedulerEvents
+ *
+ * @ORM\Table(name="scheduler_events")
+ * @ORM\Entity
+ */
+class SchedulerEvents
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="event_id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $eventId;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="start_date", type="datetime", nullable=false)
+     */
+    private $startDate;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="end_date", type="datetime", nullable=false)
+     */
+    private $endDate;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="event_name", type="string", length=255, nullable=false)
+     */
+    private $eventName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="details", type="text", length=65535, nullable=true)
+     */
+    private $details;
+
+
+}

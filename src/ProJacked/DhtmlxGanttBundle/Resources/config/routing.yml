@@ -1,0 +1,3 @@
+pro_jacked_dhtmlx_gantt:
+    resource: '@ProJackedDhtmlxGanttBundle/Controller'
+    type: annotation

@@ -1,0 +1,7 @@
+parameters:
+    projacked_dhtmlxgantt.connector_adapter.class: ProJacked\DhtmlxGanttBundle\Adapter\GanttConnectorAdapter
+
+services:
+    projacked_dhtmlxgantt.connector_adapter:
+        class: '%projacked_dhtmlxgantt.connector_adapter.class%'
+        arguments: ['Doctrine', '@doctrine']
