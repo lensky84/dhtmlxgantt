@@ -9,6 +9,10 @@ use ProJacked\DhtmlxGanttBundle\Connector\DataProcessor\GanttDataProcessor;
 use ProJacked\DhtmlxGanttBundle\DataSource\DataSourceInterface;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
+/**
+ * Class GanttConnectorAdapter
+ * @package ProJacked\DhtmlxGanttBundle\Adapter
+ */
 class GanttConnectorAdapter
 {
     /**
@@ -46,13 +50,21 @@ class GanttConnectorAdapter
      */
     protected $registry;
 
-
+    /**
+     * GanttConnectorAdapter constructor.
+     * @param $dataWrapper
+     * @param RegistryInterface $registry
+     */
     public function __construct($dataWrapper, RegistryInterface $registry)
     {
         $this->connector = new GanttConnector(null, $dataWrapper, GanttDataItem::class, GanttDataProcessor::class);
         $this->registry = $registry;
     }
 
+    /**
+     * @param DataSourceInterface $tasks
+     * @param DataSourceInterface|null $links
+     */
     public function configure(DataSourceInterface $tasks, DataSourceInterface $links = null)
     {
         $tasks->configure($this->registry);
@@ -67,6 +79,9 @@ class GanttConnectorAdapter
         }
     }
 
+    /**
+     *
+     */
     public function render()
     {
         if ($this->links) {
@@ -74,5 +89,13 @@ class GanttConnectorAdapter
         }
 
         $this->connector->render_table($this->tasks, $this->idFieldName, implode(",", $this->taskFields));
+    }
+
+    /**
+     * @return GanttConnector
+     */
+    public function getConnector()
+    {
+        return $this->connector;
     }
 }

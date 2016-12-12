@@ -50,6 +50,9 @@ class EntitySource implements DataSourceInterface
         $this->entityClass = $entityClass;
     }
 
+    /**
+     * @return string
+     */
     public function getEntityClass()
     {
         return $this->entityClass;
@@ -140,6 +143,9 @@ class EntitySource implements DataSourceInterface
         return $identifiers[0];
     }
 
+    /**
+     * @return array
+     */
     public function getFields()
     {
         $classMetadata = $this->manager->getClassMetadata($this->entityClass);
@@ -163,6 +169,9 @@ class EntitySource implements DataSourceInterface
         return $fields;
     }
 
+    /**
+     * @return array
+     */
     public function getRelations()
     {
         $classMetadata = $this->manager->getClassMetadata($this->entityClass);
